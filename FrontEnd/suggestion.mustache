@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suggestions</title>
+    <link rel="stylesheet" href="/css/adventourstyle.css">
+    <link rel="stylesheet" href="/css/suggestion.css">
+</head>
+<body>
+    <nav>
+        <div class="nav__logo">Adventour<span>.</span></div>
+        <input type="checkbox" name="check" id="check">
+        <ul class="nav__links">
+            <li class="link"><a href="home">Home</a></li>
+            <li class="link"><a href="destination">Destinations</a></li>
+            <li class="link"><a href="price">Pricing</a></li>
+            <li class="link"><a href="https://bhushan-anil-mah.formaloo.co/vi7had">Reviews</a></li>
+            <li class="link" id="login"><a href="/">login</a></li>
+        </ul>
+        <label for="check"><i class="fa-solid fa-bars"></i></label>
+        <!-- <button class="btn"><a href="Contact">Contact Us</button> -->
+    </nav>
+
+    <div class="container_for_cards">
+        
+        <section class="trip" id="price">
+            <div class="section__container trip__container">
+              <h2 class="section__title">Some Suggestions for you.</h2>
+              <p class="section__subtitle">
+                Explore more with us...
+              </p>
+              <div class="trip__grid">
+                {{#places}}
+                <div class="trip__card">
+                  <img src="{{ img_src }}" alt="trip" />
+                  <div class="trip__details">
+                    <p>{{place}}</p>
+                    <div class="rating"><i class="ri-star-fill"></i> 4.2</div>
+                    <div class="booking__price">
+                      <div class="price"><span>From</span> {{price}}</div>
+                      <button class="book__now">Book Now</button>
+                    </div>
+                  </div>
+                </div>
+                {{/places}}
+
+              <div class="view__all" style="margin: 2rem 5px;">
+                <button class="btn">View All</button>
+              </div>
+            </div>
+          </section>
+          
+    </div>
+</body>
+</html>

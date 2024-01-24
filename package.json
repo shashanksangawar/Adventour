@@ -1,0 +1,27 @@
+{
+  "name": "adventour",
+  "version": "1.0.0",
+  "description": "Tours and Travels Website",
+  "main": "index.js",
+  "scripts": {
+    "test": "nodemon index.js"
+  },
+  "keywords": [
+    "Tour",
+    "travel",
+    "guide",
+    "holidays"
+  ],
+  "author": "Bhushan",
+  "license": "ISC",
+  "dependencies": {
+    "consolidate": "1.0.3",
+    "express": "4.18.2",
+    "express-session": "1.17.3",
+    "mustache-express": "1.3.2",
+    "mysql2": "3.8.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.3"
+  }
+}

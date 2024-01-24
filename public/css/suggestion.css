@@ -1,0 +1,19 @@
+.container_for_cards{
+    width: 100%;
+    height: 90dvh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.trip{
+    width: 90%;
+    height: 80%;
+    margin: auto auto;
+    background: transparent;
+}
+
+img{
+    width: 500px;
+    height: 250px;
+}

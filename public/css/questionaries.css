@@ -1,0 +1,50 @@
+.container_for_ques{
+    display: grid;
+    width: 100%;
+    height: 90dvh;
+    place-items: center;
+    font-size: large;
+    margin-top: 8rem;
+}
+
+.section_for_cnt{
+    width: 40%;
+    height: 35dvh;
+    border: 2px var(--primary-color) solid;
+    border-radius: 15px;
+}
+
+.section_for_cnt, .inner_cnt{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+.section_for_cnt select{
+    width: 350px;
+    height: 60px;
+    font-size: 1.3rem;
+    padding: 1rem 0.9rem;
+    background-color: white;
+    border: 1.5px var(--text-light) solid;
+    border-radius: 15px;
+}
+
+.section_for_cnt input{
+    font-weight: bold;
+    font-size: 1rem;
+    padding: 0.8rem 2rem;
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 15px;
+}
+
+.cat{
+    display: block;
+}
+
+.btn{
+    margin-top: 1rem;
+}

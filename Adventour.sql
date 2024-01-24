@@ -1,0 +1,9 @@
+CREATE DATABASE ADVENTOUR;
+
+CREATE TABLE users(
+    UserId INT AUTO_INCREMENT PRIMARY KEY,
+    UserName VARCHAR(100),
+    Email VARCHAR(100),
+    PasswordHash VARCHAR(100),
+    RegistrationDate DATE
+);
