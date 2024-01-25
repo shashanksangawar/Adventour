@@ -63,7 +63,7 @@ app.post("/api/v1/login", async function(request, response)
   }
   catch (error)
   {
-    response.status(500).send({'returncode': 1, 'message': 'Internal Server Error', 'output': []});
+    response.status(500).send({'returncode': 1, 'message': 'Account not Found', 'output': []});
   }
 });
 
