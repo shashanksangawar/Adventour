@@ -10,13 +10,21 @@
 .section_for_cnt{
     width: 40%;
     height: 35dvh;
-    border: 2px var(--primary-color) solid;
+    /* border: 2px var(--primary-color) solid; */
     border-radius: 15px;
 }
 
 .section_for_cnt, .inner_cnt{
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+.inner_cnts
+{
+    display: flex;
     justify-content: center;
     align-items: center;
     gap: 2rem;
@@ -32,7 +40,7 @@
     border-radius: 15px;
 }
 
-.section_for_cnt input{
+.section_for_cnt input[type=submit]{
     font-weight: bold;
     font-size: 1rem;
     padding: 0.8rem 2rem;

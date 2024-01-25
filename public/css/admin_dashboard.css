@@ -1,0 +1,47 @@
+.section_for_dash{
+  margin-top: 6rem;
+  width: 100%;
+  height: auto;
+}
+
+.btn_for_table{
+  margin: 2rem 1rem;
+}
+
+.btn_add{
+  width: 8%;
+  height: 40px;
+  border-radius: 15px;
+  background-color: #248ce4;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+
+.for_safe{
+  width: 90%;
+  margin: auto;
+}
+
+.all_table{
+  font-size: 20px;
+  border-top: 2px solid #000;
+  border-bottom: 2px solid #000;
+}
+
+.table_header{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  font-weight: 600;
+  padding: 0.8rem 0;
+  border-bottom: 2px solid #000;
+}
+
+.table_row{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
