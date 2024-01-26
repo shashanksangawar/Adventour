@@ -95,7 +95,7 @@ CREATE TABLE user_reviews(
     FOREIGN KEY (BookingId) REFERENCES bookings(ID)
 );
 
--- 8.
+-- 9.
 CREATE TABLE admins(
     Id INT AUTO_INCREMENT PRIMARY KEY,
     UserName VARCHAR(100) NOT NULL,

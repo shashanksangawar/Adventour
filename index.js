@@ -14,6 +14,7 @@ const upload = multer({ storage: storage });
 //<---- Backend Modules ---->
 const authentication = require('./authentication');
 const admin_fetch_db = require('./admin_fetch_db');
+const fetch_db = require('./fetch_db');
 const insert_db = require('./admin_insert_db');
 
 //<---- Web-App Configuration ----> 
@@ -51,15 +52,67 @@ app.get("/home", function (request, response)
   response.render('home');
 });
 
+
+function transformJsonStructure(json) {
+  if (json.output) {
+    json.output.forEach(item => {
+      if (item.Image) {
+        const base64Image = item.Image.data.toString('base64');
+        json.output.Base64Image = `data:image/jpeg;base64,${base64Image}`;
+      }
+    });
+  }
+  return json;
+}
+
+
+app.get("/female", async function (request, response) 
+{
+  try {
+    // Make an asynchronous HTTP request to fetch destinations
+    const females = await axios.get('http://localhost:5000/api/v1/fetch/packages/female');
+
+    // Extract the data from the response
+    const female = females.data;
+    const transformedData = transformJsonStructure(female);
+
+    // Render the template with the data
+    response.render('female', { data: transformedData});
+  } catch (error) {
+    console.error('Error fetching destinations:', error);
+    response.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
 // UIs for admin
 app.get("/admin", function (request, response) 
 {
   response.render('admin');
 });
 
-app.get("/admin/dashboard", function (request, response) 
+app.get("/admin/dashboard", async function (request, response) 
 {
-  response.render('admin_dashboard');
+  try 
+  {
+    // Make an asynchronous HTTP request to fetch destinations
+    const destination = await axios.get('http://localhost:5000/api/v1/fetch/destinations');
+    const activity = await axios.get('http://localhost:5000/api/v1/fetch/activities');
+    const accomodation = await axios.get('http://localhost:5000/api/v1/fetch/accomodations');
+    const package = await axios.get('http://localhost:5000/api/v1/fetch/packages');
+
+    // Extract the data from the response
+    const destinations = destination.data;
+    const activities = activity.data;
+    const accomodations = accomodation.data;
+    const packages = package.data;
+
+    // Render the template with the data
+    response.render('admin_dashboard', { destinations: destinations, activities: activities, accomodations: accomodations, packages: packages });
+    // response.render('admin_dashboard');
+  } catch (error) {
+    console.error('Error fetching destinations:', error);
+    response.status(500).json({ error: 'Internal Server Error' });
+  }
 });
 
 app.get("/admin/add/destinations", function (request, response) 
@@ -195,7 +248,7 @@ app.post("/api/v1/admin/login", async function(request, response)
 
     if (loginResult.returncode === 0) 
     {
-      response.render('home');
+      response.redirect('/admin/dashboard');
     }
     else 
     {
@@ -220,7 +273,7 @@ app.post("/api/v1/admin/register", async function(request, response)
     // Check the return code to determine success or failure
     if (registrationResult.returncode === 0)
     {
-      response.render('home');
+      response.redirect('/admin/dashboard');
     }
     else 
     {
@@ -241,7 +294,158 @@ app.post("/api/v1/admin/register", async function(request, response)
   }
 });
 
-// Fetch APIs for admin(Rest APIs)
+// Fetch APIs for admin(For Dashboard)(Rest APIs)
+app.get("/api/v1/fetch/destinations", async function(request, response)
+{
+  try 
+  {
+    const fetched_result = await fetch_db.destinations();
+
+    // Check the return code to determine success or failure
+    if (fetched_result.returncode === 0)
+    {
+      response.status(200).send({'returncode': 0, 'message': fetched_result.message, 'output': fetched_result.output});
+    }
+    else 
+    {
+      response.status(503).send({'returncode': 1, 'message': fetched_result.message, 'output': fetched_result.output});
+    }
+  } 
+  catch (error)
+  {
+    // Handle different types of errors (client-side vs server-side)
+    if (error.returncode)
+    {
+      response.status(400).send({'returncode': 1, 'message': error.message, 'output': error.output});
+    }
+    else 
+    {
+      response.status(500).send({'returncode': 1, 'message': error, 'output': []});
+    }
+  }
+});
+
+app.get("/api/v1/fetch/accomodations", async function(request, response)
+{
+  try 
+  {
+    const fetched_result = await fetch_db.accomodations();
+
+    // Check the return code to determine success or failure
+    if (fetched_result.returncode === 0)
+    {
+      response.status(200).send({'returncode': 0, 'message': fetched_result.message, 'output': fetched_result.output});
+    }
+    else 
+    {
+      response.status(503).send({'returncode': 1, 'message': fetched_result.message, 'output': fetched_result.output});
+    }
+  } 
+  catch (error)
+  {
+    // Handle different types of errors (client-side vs server-side)
+    if (error.returncode)
+    {
+      response.status(400).send({'returncode': 1, 'message': error.message, 'output': error.output});
+    }
+    else 
+    {
+      response.status(500).send({'returncode': 1, 'message': error, 'output': []});
+    }
+  }
+});
+
+app.get("/api/v1/fetch/activities", async function(request, response)
+{
+  try 
+  {
+    const fetched_result = await fetch_db.activities();
+
+    // Check the return code to determine success or failure
+    if (fetched_result.returncode === 0)
+    {
+      response.status(200).send({'returncode': 0, 'message': fetched_result.message, 'output': fetched_result.output});
+    }
+    else 
+    {
+      response.status(503).send({'returncode': 1, 'message': fetched_result.message, 'output': fetched_result.output});
+    }
+  } 
+  catch (error)
+  {
+    // Handle different types of errors (client-side vs server-side)
+    if (error.returncode)
+    {
+      response.status(400).send({'returncode': 1, 'message': error.message, 'output': error.output});
+    }
+    else 
+    {
+      response.status(500).send({'returncode': 1, 'message': error, 'output': []});
+    }
+  }
+});
+
+app.get("/api/v1/fetch/packages", async function(request, response)
+{
+  try 
+  {
+    const fetched_result = await fetch_db.packages();
+
+    // Check the return code to determine success or failure
+    if (fetched_result.returncode === 0)
+    {
+      response.status(200).send({'returncode': 0, 'message': fetched_result.message, 'output': fetched_result.output});
+    }
+    else 
+    {
+      response.status(503).send({'returncode': 1, 'message': fetched_result.message, 'output': fetched_result.output});
+    }
+  } 
+  catch (error)
+  {
+    // Handle different types of errors (client-side vs server-side)
+    if (error.returncode)
+    {
+      response.status(400).send({'returncode': 1, 'message': error.message, 'output': error.output});
+    }
+    else 
+    {
+      response.status(500).send({'returncode': 1, 'message': error, 'output': []});
+    }
+  }
+});
+
+app.get("/api/v1/fetch/packages/female", async function(request, response)
+{
+  try 
+  {
+    const fetched_result = await fetch_db.female_packages();
+
+    // Check the return code to determine success or failure
+    if (fetched_result.returncode === 0)
+    {
+      response.status(200).send({'returncode': 0, 'message': fetched_result.message, 'output': fetched_result.output});
+    }
+    else 
+    {
+      response.status(503).send({'returncode': 1, 'message': fetched_result.message, 'output': fetched_result.output});
+    }
+  } 
+  catch (error)
+  {
+    // Handle different types of errors (client-side vs server-side)
+    if (error.returncode)
+    {
+      response.status(400).send({'returncode': 1, 'message': error.message, 'output': error.output});
+    }
+    else 
+    {
+      response.status(500).send({'returncode': 1, 'message': error, 'output': []});
+    }
+  }
+});
+
+// Fetch APIs for admin(For UI)(Rest APIs)
 app.get("/api/v1/admin/fetch/destinations", async function(request, response)
 {
   try 
@@ -307,6 +511,36 @@ app.get("/api/v1/admin/fetch/activities", async function(request, response)
   try 
   {
     const fetched_result = await admin_fetch_db.activities();
+
+    // Check the return code to determine success or failure
+    if (fetched_result.returncode === 0)
+    {
+      response.status(200).send({'returncode': 0, 'message': fetched_result.message, 'output': fetched_result.output});
+    }
+    else 
+    {
+      response.status(503).send({'returncode': 1, 'message': fetched_result.message, 'output': fetched_result.output});
+    }
+  } 
+  catch (error)
+  {
+    // Handle different types of errors (client-side vs server-side)
+    if (error.returncode)
+    {
+      response.status(400).send({'returncode': 1, 'message': error.message, 'output': error.output});
+    }
+    else 
+    {
+      response.status(500).send({'returncode': 1, 'message': error, 'output': []});
+    }
+  }
+});
+
+app.get("/api/v1/admin/fetch/packages", async function(request, response)
+{
+  try 
+  {
+    const fetched_result = await admin_fetch_db.packages();
 
     // Check the return code to determine success or failure
     if (fetched_result.returncode === 0)

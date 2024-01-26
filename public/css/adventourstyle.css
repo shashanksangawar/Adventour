@@ -293,6 +293,7 @@ header {
 
 .destination__card img {
   border-radius: 1rem;
+  overflow: hidden;
 }
 
 .destination__details {

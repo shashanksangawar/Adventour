@@ -232,7 +232,7 @@ const female_packages = () =>
               reject({'returncode': 1, 'message': err, 'output': []});
               return;
             }
-            const query = "SELECT * FROM packages WHERE Type = 'Female';";
+            const query = "SELECT * FROM packages p, destinations d WHERE p.Type = 'Female' AND p.DestinationId=d.Id;";
             connection.query(query, (queryError, results) => {
             connection.release();
     

@@ -29,61 +29,148 @@
 
     <div class="section_for_dash">
 
+        <!-- Destinations -->
         <div class="for_safe">
 
             <div class="btn_for_table">
-                <div class="btn_add">Add</div>
+                <button class="btn_add"> 
+                    <a href="http://localhost:5000/admin/add/destinations">Add</a>  
+                </button>
+                <br>
+                <h1>Destinations</h1>
             </div>
 
             <div class="all_table">
                 <div class="table_header">
-                    <span class="t_cl">Destinations</span>
                     <span class="t_cl">Id</span>
                     <span class="t_cl">Name</span>
                     <span class="t_cl">Country</span>
                     <span class="t_cl">Region</span>
                     <span class="t_cl">Description</span>
                 </div>
+                {{#destinations.output}}
                 <div class="table_row">
-                    <span class="t_cl">Destinations</span>
+                    <span class="t_cl">{{ Id }}</span>
+                    <span class="t_cl">{{ Name }}</span>
+                    <span class="t_cl">{{ Country }}</span>
+                    <span class="t_cl">{{ Region }}</span>
+                    <span class="t_cl">{{ Description }}</span>
+                </div>
+                {{/destinations.output}}
+
+            </div>
+        </div>
+
+        <!-- Accomodations -->
+        <div class="for_safe">
+
+            <div class="btn_for_table">
+                <button class="btn_add"> 
+                    <a href="http://localhost:5000/admin/add/accomodations">Add</a>  
+                </button>
+                <br>
+                <h1>Accomodations</h1>
+            </div>
+
+            <div class="all_table">
+                <div class="table_header">
                     <span class="t_cl">Id</span>
                     <span class="t_cl">Name</span>
-                    <span class="t_cl">Country</span>
-                    <span class="t_cl">Region</span>
+                    <span class="t_cl">Destination Id</span>
                     <span class="t_cl">Description</span>
+                    <span class="t_cl">Price Per Night</span>
                 </div>
+                
+                {{#accomodations.output}}
                 <div class="table_row">
-                    <span class="t_cl">Destinations</span>
+                    <span class="t_cl">{{ Id }}</span>
+                    <span class="t_cl">{{ Name }}</span>
+                    <span class="t_cl">{{ DestinationId }}</span>
+                    <span class="t_cl">{{ Description }}</span>
+                    <span class="t_cl">{{ PricePerNight }}</span>
+                </div>
+                {{/accomodations.output}}
+
+            </div>
+        </div>
+
+        <!-- Activities -->
+        <div class="for_safe">
+
+            <div class="btn_for_table">
+                <button class="btn_add"> 
+                    <a href="http://localhost:5000/admin/add/activities">Add</a>  
+                </button>
+                <br>
+                <h1>Activities</h1>
+            </div>
+
+            <div class="all_table">
+                <div class="table_header">
                     <span class="t_cl">Id</span>
                     <span class="t_cl">Name</span>
-                    <span class="t_cl">Country</span>
-                    <span class="t_cl">Region</span>
+                    <span class="t_cl">Destination Id</span>
                     <span class="t_cl">Description</span>
                 </div>
+                
+                {{#activities.output}}
                 <div class="table_row">
-                    <span class="t_cl">Destinations</span>
+                    <span class="t_cl">{{ Id }}</span>
+                    <span class="t_cl">{{ Name }}</span>
+                    <span class="t_cl">{{ DestinationId }}</span>
+                    <span class="t_cl">{{ Description }}</span>
+                </div>
+                {{/activities.output}}
+
+            </div>
+        </div>
+
+        <!-- Packages -->
+        <div class="for_safe">
+
+            <div class="btn_for_table">
+                <button class="btn_add"> 
+                    <a href="http://localhost:5000/admin/add/packages">Add</a>  
+                </button>
+                <br>
+                <h1>Packages</h1>
+            </div>
+
+            <div class="all_table">
+                <div class="table_header">
                     <span class="t_cl">Id</span>
                     <span class="t_cl">Name</span>
-                    <span class="t_cl">Country</span>
-                    <span class="t_cl">Region</span>
+                    <span class="t_cl">Guide</span>
+                    <span class="t_cl">Type</span>
+                    <span class="t_cl">Destination Id</span>
+                    <span class="t_cl">Activity Id</span>
+                    <span class="t_cl">Accommodation Id</span>
+                    <span class="t_cl">Package Validity</span>
+                    <span class="t_cl">Start Date</span>
+                    <span class="t_cl">End Date</span>
+                    <span class="t_cl">Price</span>
+                    <span class="t_cl">Status</span>
                     <span class="t_cl">Description</span>
                 </div>
+                
+                {{#packages.output}}
                 <div class="table_row">
-                    <span class="t_cl">Destinations</span>
-                    <span class="t_cl">Id</span>
-                    <span class="t_cl">Name</span>
-                    <span class="t_cl">Country</span>
-                    <span class="t_cl">Region</span>
-                    <span class="t_cl">Description</span>
+                    <span class="t_cl">{{ Id }}</span>
+                    <span class="t_cl">{{ Guide }}</span>
+                    <span class="t_cl">{{ Name }}</span>
+                    <span class="t_cl">{{ Type }}</span>
+                    <span class="t_cl">{{ DestinationId }}</span>
+                    <span class="t_cl">{{ ActivityId }}</span>
+                    <span class="t_cl">{{ AccommodationId }}</span>
+                    <span class="t_cl">{{ PackageValidity }}</span>
+                    <span class="t_cl">{{ StartDate }}</span>
+                    <span class="t_cl">{{ EndDate }}</span>
+                    <span class="t_cl">{{ Price }}</span>
+                    <span class="t_cl">{{ Status }}</span>
+                    <span class="t_cl">{{ Description }}</span>
                 </div>
-                <div class="table_row">
-                    <span class="t_cl">Destinations</span>
-                    <span class="t_cl">Id</span>
-                    <span class="t_cl">Name</span>
-                    <span class="t_cl">Country</span>
-                    <span class="t_cl">Region</span>
-                    <span class="t_cl">Description</span>
-                </div>
+                {{/packages.output}}
+
             </div>
         </div>
     </div>
