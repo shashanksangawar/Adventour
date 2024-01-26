@@ -1,4 +1,5 @@
 CREATE DATABASE ADVENTOUR;
+
 -- 1.
 CREATE TABLE users(
     Id INT AUTO_INCREMENT PRIMARY KEY,
@@ -6,26 +7,6 @@ CREATE TABLE users(
     Email VARCHAR(100) NOT NULL,
     PasswordHash VARCHAR(100) NOT NULL,
     RegistrationDate DATE NOT NULL
-);
-
--- Algorithm Related --
--- 8.
-CREATE TABLE user_preference(
-    Id INT AUTO_INCREMENT PRIMARY KEY,
-    UserId INT NOT NULL,
-    Category VARCHAR(100) NOT NULL,
-    SubCategory VARCHAR(100) NOT NULL,
-    FOREIGN KEY (UserId) REFERENCES users(ID),
-); 
-
--- 4.
-
-CREATE TABLE activities(
-    Id INT AUTO_INCREMENT PRIMARY KEY,
-    Name VARCHAR(100) NOT NULL,
-    DestinationId INT NOT NULL,
-    Description VARCHAR(255) NOT NULL,
-    FOREIGN KEY (DestinationId) REFERENCES destinations(ID)
 );
 
 -- Search Related --
@@ -48,6 +29,16 @@ CREATE TABLE accomodations(
     PricePerNight DECIMAL(10, 2) NOT NULL, -- Adjust the precision and scale as needed
     FOREIGN KEY (DestinationId) REFERENCES destinations(ID)
 ); 
+
+-- 4.
+
+CREATE TABLE activities(
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    Name VARCHAR(100) NOT NULL,
+    DestinationId INT NOT NULL,
+    Description VARCHAR(255) NOT NULL,
+    FOREIGN KEY (DestinationId) REFERENCES destinations(ID)
+);
 
 -- 5.
 -- For this only
@@ -75,10 +66,8 @@ CREATE TABLE packages(
 -- 6.
 CREATE TABLE bookings(
     Id INT AUTO_INCREMENT PRIMARY KEY,
-    Name VARCHAR(100) NOT NULL,
     PackageId INT NOT NULL,
     UserId INT NOT NULL,
-    Description VARCHAR(255) NOT NULL,
     CheckIn DATE NOT NULL,
     CheckOut DATE NOT NULL,
     FOREIGN KEY (PackageId) REFERENCES packages(ID),
@@ -93,6 +82,15 @@ CREATE TABLE user_reviews(
     Rating VARCHAR(5) NOT NULL,
     ReviewDate DATE NOT NULL,
     FOREIGN KEY (BookingId) REFERENCES bookings(ID)
+);
+-- 8.
+CREATE TABLE algo (
+    Id INT AUTO_INCREMENT PRIMARY KEY,    
+    PackageId INT,
+    Category VARCHAR(100) NOT NULL, 
+    SubCategory VARCHAR(100) NOT NULL, 
+    Season VARCHAR(100) NOT NULL, 
+    FOREIGN KEY (PackageId) REFERENCES packages(ID) ON DELETE CASCADE
 );
 
 -- 9.

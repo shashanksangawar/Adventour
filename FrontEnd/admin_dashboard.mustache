@@ -173,6 +173,39 @@
 
             </div>
         </div>
+
+        <!-- Activities -->
+        <div class="for_safe">
+
+            <div class="btn_for_table">
+                <button class="btn_add"> 
+                    <a href="http://localhost:5000/admin/add/activities">Add</a>  
+                </button>
+                <br>
+                <h1>Data For Algorithm</h1>
+            </div>
+
+            <div class="all_table">
+                <div class="table_header">
+                    <span class="t_cl">Id</span>
+                    <span class="t_cl">Category</span>
+                    <span class="t_cl">SubCategory</span>
+                    <span class="t_cl">Season</span>
+                    <span class="t_cl">PackageId</span>
+                </div>
+                
+                {{#algorithm.output}}
+                <div class="table_row">
+                    <span class="t_cl">{{ Id }}</span>
+                    <span class="t_cl">{{ Category }}</span>
+                    <span class="t_cl">{{ SubCategory }}</span>
+                    <span class="t_cl">{{ Season }}</span>
+                    <span class="t_cl">{{ PackageId }}</span>
+                </div>
+                {{/algorithm.output}}
+
+            </div>
+        </div>
     </div>
 
 </body>

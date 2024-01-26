@@ -173,9 +173,36 @@ const group_packages = () =>
     
             if (results.length > 0) 
             {
-                // Destinations Fetched
-                resolve({'returncode': 0, 'message': 'Fetched accomodations', 'output': results});
-            } 
+                const query = "SELECT Id FROM packages WHERE Type = 'Group';";
+                connection.query(query, (queryError, results1) => 
+                {
+                    connection.release();
+    
+                    if (queryError) 
+                    {
+                        reject({'returncode': 1, 'message': queryError, 'output': []});
+                        return;
+                    }
+        
+                    if (results1.length > 0) 
+                    {
+                        results.forEach((item,index) =>
+                        {
+
+                            id_value =results1[index]
+                            value = id_value.Id;
+                            item.PackageID = value;
+
+                        });
+                        // Destinations Fetched
+                        resolve({'returncode': 0, 'message': 'Fetched', 'output': results});
+                    } 
+                    else 
+                    {
+                        // No Destinations are available
+                        reject({'returncode': 1, 'message': 'No Packages found', 'output': []});
+                    }
+                });} 
             else 
             {
                 // No Destinations are available
@@ -208,8 +235,36 @@ const solo_packages = () =>
     
             if (results.length > 0) 
             {
-                // Destinations Fetched
-                resolve({'returncode': 0, 'message': 'Fetched accomodations', 'output': results});
+                const query = "SELECT Id FROM packages WHERE Type = 'Solo';";
+                connection.query(query, (queryError, results1) => 
+                {
+                    connection.release();
+    
+                    if (queryError) 
+                    {
+                        reject({'returncode': 1, 'message': queryError, 'output': []});
+                        return;
+                    }
+        
+                    if (results1.length > 0) 
+                    {
+                        results.forEach((item,index) =>
+                        {
+
+                            id_value =results1[index]
+                            value = id_value.Id;
+                            item.PackageID = value;
+
+                        });
+                        // Destinations Fetched
+                        resolve({'returncode': 0, 'message': 'Fetched', 'output': results});
+                    } 
+                    else 
+                    {
+                        // No Destinations are available
+                        reject({'returncode': 1, 'message': 'No Packages found', 'output': []});
+                    }
+                });    
             } 
             else 
             {
@@ -232,7 +287,7 @@ const female_packages = () =>
               reject({'returncode': 1, 'message': err, 'output': []});
               return;
             }
-            const query = "SELECT * FROM packages p, destinations d WHERE p.Type = 'Female' AND p.DestinationId=d.Id;";
+            const query = "SELECT * FROM packages p, destinations d WHERE p.Type = 'Female' AND d.Id=p.DestinationId;";
             connection.query(query, (queryError, results) => {
             connection.release();
     
@@ -243,17 +298,108 @@ const female_packages = () =>
     
             if (results.length > 0) 
             {
-                // Destinations Fetched
-                resolve({'returncode': 0, 'message': 'Fetched accomodations', 'output': results});
+                const query = "SELECT Id FROM packages WHERE Type = 'Female';";
+                connection.query(query, (queryError, results1) => 
+                {
+                    connection.release();
+    
+                    if (queryError) 
+                    {
+                        reject({'returncode': 1, 'message': queryError, 'output': []});
+                        return;
+                    }
+        
+                    if (results1.length > 0) 
+                    {
+                        results.forEach((item,index) =>
+                        {
+
+                            id_value =results1[index]
+                            value = id_value.Id;
+                            item.PackageID = value;
+
+                        });
+                        // Destinations Fetched
+                        resolve({'returncode': 0, 'message': 'Fetched', 'output': results});
+                    } 
+                    else 
+                    {
+                        // No Destinations are available
+                        reject({'returncode': 1, 'message': 'No Packages found', 'output': []});
+                    }
+                });
             } 
             else 
             {
                 // No Destinations are available
-                reject({'returncode': 1, 'message': 'No accomodations found', 'output': []});
+                reject({'returncode': 1, 'message': 'No Packages found', 'output': []});
             }
             });
         });
     });
 };
 
-module.exports = { destinations, accomodations, activities, packages, group_packages, solo_packages, female_packages };
+const algorithm = () =>
+{
+    return new Promise((resolve, reject) => 
+    {
+        pool.getConnection((err, connection) => 
+        {
+            if (err) 
+            {
+              reject({'returncode': 1, 'message': err, 'output': []});
+              return;
+            }
+            const query = "SELECT * FROM algo;";
+            connection.query(query, (queryError, results) => {
+            connection.release();
+    
+            if (queryError) {
+                reject({'returncode': 1, 'message': queryError, 'output': []});
+                return;
+            }
+    
+            if (results.length > 0) 
+            {
+                const query = "SELECT Id FROM packages WHERE Type = 'Female';";
+                connection.query(query, (queryError, results1) => 
+                {
+                    connection.release();
+    
+                    if (queryError) 
+                    {
+                        reject({'returncode': 1, 'message': queryError, 'output': []});
+                        return;
+                    }
+        
+                    if (results1.length > 0) 
+                    {
+                        results.forEach((item,index) =>
+                        {
+
+                            id_value =results1[index]
+                            value = id_value.Id;
+                            item.PackageID = value;
+
+                        });
+                        // Destinations Fetched
+                        resolve({'returncode': 0, 'message': 'Fetched', 'output': results});
+                    } 
+                    else 
+                    {
+                        // No Destinations are available
+                        reject({'returncode': 1, 'message': 'No Packages found', 'output': []});
+                    }
+                });
+            } 
+            else 
+            {
+                // No Destinations are available
+                reject({'returncode': 1, 'message': 'No Packages found', 'output': []});
+            }
+            });
+        });
+    });
+};
+
+module.exports = { destinations, accomodations, activities, packages, group_packages, solo_packages, female_packages, algorithm };

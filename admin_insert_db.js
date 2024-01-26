@@ -135,4 +135,33 @@ const packages = (guide, name, type, destination_id, activity_id, accomodation_i
     });
 };
 
-module.exports = { destinations, accomodations, activities, packages }
+const algorithm = (category, sub_category, season, package_id) => 
+{
+    return new Promise((resolve, reject) => 
+    {
+        pool.getConnection((err, connection) => 
+        {
+            if (err) 
+            {
+                reject({'returncode': 1, 'message': err, 'output': []});
+                return;
+            }         
+
+            const query = 'INSERT INTO algo (PackageId, Category, SubCategory, Season) VALUES (?, ?, ?, ?);';
+            connection.query(query, [package_id, category, sub_category, season], (queryError, results) => 
+            {
+                connection.release();
+
+                if (queryError) 
+                {
+                    reject({'returncode': 1, 'message': queryError, 'output': []});
+                    return;
+                }
+
+                resolve({'returncode': 0, 'message': 'Successful', 'output': results});
+            });
+        });
+    });
+};
+
+module.exports = { destinations, accomodations, activities, packages, algorithm }

@@ -28,34 +28,34 @@
     <button class="btn"><a href="Contact">Contact Us</button>
   </nav>
 
-  <section class="trip" id="price">
-    <div class="section__container trip__container">
-      <h2 class="section__title">Female Packages</h2>
-      <p class="section__subtitle">
-        Explore your suitable and dream places around the world. Here you can
-        find your right destination.
-      </p>
-      {{#data.output}}
-      <div class="trip__grid">
-        <div class="trip__card">
-            <!-- <h1>{{ Base64Image }}</h1> -->
-              <img src="data:image/jpeg;base64,{{ Base64Image }}" alt="trip" />
-
-          <div class="trip__details">
-            <p>{{ Name }} , {{ Country }}</p>
-            <div class="rating"><i class="ri-star-fill"></i> 4.2</div>
-            <div class="booking__price">
-              <div class="price"><span>From</span> Rs 6000</div>
-              <button class="book__now">Book Now</button>
+  <form method="get">
+    <section class="trip" id="price">
+      <div class="section__container trip__container">
+        <h2 class="section__title">Female Packages</h2>
+        <p class="section__subtitle">
+          Explore your suitable and dream places around the world. Here you can
+          find your right destination.
+        </p>
+        {{#data.output}}
+        <div class="trip__grid">
+          <div class="trip__card">
+              <!-- <h1>{{ Base64Image }}</h1> -->
+                <img src="data:image/jpeg;base64,{{ Image }}" alt="trip" />
+  
+            <div class="trip__details">
+              <p>{{ Name }} , {{ Country }}</p>
+              <div class="rating"><i class="ri-star-fill"></i> 4.2</div>
+              <div class="booking__price">
+                <div class="price"><span>From</span> {{ Price }}</div>
+                <button class="book__now"><a href="/bookings/?package_id={{ PackageID }}&package_name={{ PackageValidity }}">Book Now</a></button>
+              </div>
             </div>
           </div>
         </div>
+        {{/data.output}}
       </div>
-      {{/data.output}}
-
-
-    </div>
-  </section>
+    </section>
+  </form>
 
   <section class="subscribe">
     <div class="section__container subscribe__container">
