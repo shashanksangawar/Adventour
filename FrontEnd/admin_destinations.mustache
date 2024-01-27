@@ -10,6 +10,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="/css/adventourstyle.css" />
     <link rel="stylesheet" href="/css/questionaries.css" />
+    <link rel="stylesheet" href="/css/admin_destination.css" />
 
 </head>
 
@@ -33,26 +34,28 @@
                 <div class="inner_cnt">
                     <div class="inner_cnts">
                         <label for="name">Name:</label>
-                        <input type="text" id="name" name="name" required>
+                        <input class="inp" type="text" id="name" name="name" required>
                     </div>
                     <div class="inner_cnts">
                         <label for="country">Country:</label>
-                        <input type="text" id="country" name="country" required>
+                        <input class="inp" type="text" id="country" name="country" required>
                     </div>
                     <div class="inner_cnts">
                         <label for="region">Region:</label>
-                        <input type="text" id="region" name="region" required>
+                        <input class="inp" type="text" id="region" name="region" required>
                     </div>
                     <div class="inner_cnts">
                         <label for="description">Description:</label>
-                        <textarea id="description" name="description" rows="4" required></textarea>
+                        <textarea class="inpa" id="description" name="description" rows="4" required></textarea>
                     </div>
                     <div class="inner_cnts">
                         <label for="image">Image:</label>
-                        <input type="file" id="image" name="image" accept="image/*" required>
+                        <input class="inp" type="file" id="image" name="image" accept="image/*" required>
                     </div>    
                 </div>
-                <input type="submit" value="Add" class="btn">
+                <div class="btn_in">
+                    <input type="submit" value="Add" class="btn">
+                </div>
             </form>
         </section>
     </div>

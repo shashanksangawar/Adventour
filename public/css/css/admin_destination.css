@@ -1,0 +1,41 @@
+form{
+  border: 2px solid #002020;
+  padding: 2rem;
+  display: flex;
+  align-items: start;
+  flex-direction: column;
+  border-radius: 15px;
+}
+
+.inner_cnt{
+  width: 80%;
+  margin: auto;
+}
+
+label, .inp{
+  height: 40px;
+}
+
+label, .inp , .inpa{
+  width: 20dvw;
+} 
+
+.inp, .inpa{
+  border: 1px solid #000;
+  border-radius: 8px;
+  padding: 8px;
+}
+
+.btn_in{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn{
+  margin-top: 2.5rem;
+  /* width: 100px; */
+  /* font-size: 20px; */
+  /* padding: 1rem; */
+  /* background-color: red; */
+}

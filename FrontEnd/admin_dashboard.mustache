@@ -136,75 +136,55 @@
                 <h1>Packages</h1>
             </div>
 
-            <div class="all_table">
-                <div class="table_header">
-                    <span class="t_cl">Id</span>
-                    <span class="t_cl">Name</span>
-                    <span class="t_cl">Guide</span>
-                    <span class="t_cl">Type</span>
-                    <span class="t_cl">Destination Id</span>
-                    <span class="t_cl">Activity Id</span>
-                    <span class="t_cl">Accommodation Id</span>
-                    <span class="t_cl">Package Validity</span>
-                    <span class="t_cl">Start Date</span>
-                    <span class="t_cl">End Date</span>
-                    <span class="t_cl">Price</span>
-                    <span class="t_cl">Status</span>
-                    <span class="t_cl">Description</span>
+            <section class="all_table">
+                <div class="table_header table_header-p">
+                    <span class="t_clp">Id</span>
+                    <span class="t_clp">Name</span>
+                    <span class="t_clp">Guide</span>
+                    <span class="t_clp">Type</span>
+                    <span class="t_clp">Destination Id</span>
+                    <span class="t_clp">Activity Id</span>
+                    <span class="t_clp">Accommodation Id</span>
                 </div>
                 
                 {{#packages.output}}
-                <div class="table_row">
-                    <span class="t_cl">{{ Id }}</span>
-                    <span class="t_cl">{{ Guide }}</span>
-                    <span class="t_cl">{{ Name }}</span>
-                    <span class="t_cl">{{ Type }}</span>
-                    <span class="t_cl">{{ DestinationId }}</span>
-                    <span class="t_cl">{{ ActivityId }}</span>
-                    <span class="t_cl">{{ AccommodationId }}</span>
-                    <span class="t_cl">{{ PackageValidity }}</span>
-                    <span class="t_cl">{{ StartDate }}</span>
-                    <span class="t_cl">{{ EndDate }}</span>
-                    <span class="t_cl">{{ Price }}</span>
-                    <span class="t_cl">{{ Status }}</span>
-                    <span class="t_cl">{{ Description }}</span>
+                <div class="table_row table_row-p">
+                    <span class="t_clp">{{ Id }}</span>
+                    <span class="t_clp">{{ Guide }}</span>
+                    <span class="t_clp">{{ Name }}</span>
+                    <span class="t_clp">{{ Type }}</span>
+                    <span class="t_clp">{{ DestinationId }}</span>
+                    <span class="t_clp">{{ ActivityId }}</span>
+                    <span class="t_clp">{{ AccommodationId }}</span>
                 </div>
                 {{/packages.output}}
 
-            </div>
-        </div>
-
-        <!-- Activities -->
-        <div class="for_safe">
-
-            <div class="btn_for_table">
-                <button class="btn_add"> 
-                    <a href="http://localhost:5000/admin/add/activities">Add</a>  
-                </button>
-                <br>
-                <h1>Data For Algorithm</h1>
-            </div>
-
-            <div class="all_table">
-                <div class="table_header">
-                    <span class="t_cl">Id</span>
-                    <span class="t_cl">Category</span>
-                    <span class="t_cl">SubCategory</span>
-                    <span class="t_cl">Season</span>
-                    <span class="t_cl">PackageId</span>
+            </section>
+            
+            <section class="all_table">
+                <div class="table_header table_header-p">
+                    <span class="t_clp">Id</span>
+                    <span class="t_clp">Package Validity</span>
+                    <span class="t_clp">Start Date</span>
+                    <span class="t_clp">End Date</span>
+                    <span class="t_clp">Price</span>
+                    <span class="t_clp">Status</span>
+                    <span class="t_clp">Description</span>
                 </div>
                 
-                {{#algorithm.output}}
-                <div class="table_row">
-                    <span class="t_cl">{{ Id }}</span>
-                    <span class="t_cl">{{ Category }}</span>
-                    <span class="t_cl">{{ SubCategory }}</span>
-                    <span class="t_cl">{{ Season }}</span>
-                    <span class="t_cl">{{ PackageId }}</span>
+                {{#packages.output}}
+                <div class="table_row table_row-p">
+                    <span class="t_clp">{{ Id }}</span>
+                    <span class="t_clp">{{ PackageValidity }}</span>
+                    <span class="t_clp">{{ StartDate }}</span>
+                    <span class="t_clp">{{ EndDate }}</span>
+                    <span class="t_clp">{{ Price }}</span>
+                    <span class="t_clp">{{ Status }}</span>
+                    <span class="t_clp">{{ Description }}</span>
                 </div>
-                {{/algorithm.output}}
+                {{/packages.output}}
 
-            </div>
+            </section>
         </div>
     </div>
 
