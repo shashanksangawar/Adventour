@@ -33,8 +33,8 @@
         <div class="for_safe">
 
             <div class="btn_for_table">
-                <button class="btn_add"> 
-                    <a href="http://localhost:5000/admin/add/destinations">Add</a>  
+                <button class="btn_add">
+                    <a href="http://localhost:5000/admin/add/destinations">Add</a>
                 </button>
                 <br>
                 <h1>Destinations</h1>
@@ -47,6 +47,7 @@
                     <span class="t_cl">Country</span>
                     <span class="t_cl">Region</span>
                     <span class="t_cl">Description</span>
+                    <span class="t_cl btns">
                 </div>
                 {{#destinations.output}}
                 <div class="table_row">
@@ -55,6 +56,11 @@
                     <span class="t_cl">{{ Country }}</span>
                     <span class="t_cl">{{ Region }}</span>
                     <span class="t_cl">{{ Description }}</span>
+                    <span class="t_cl btns">
+                        <a href="/api/v1/delete/destinations/?SerialNo={{ Id }}">
+                            <i class="fa fa-trash"></i>
+                        </a>
+                    </span>
                 </div>
                 {{/destinations.output}}
 
@@ -65,8 +71,8 @@
         <div class="for_safe">
 
             <div class="btn_for_table">
-                <button class="btn_add"> 
-                    <a href="http://localhost:5000/admin/add/accomodations">Add</a>  
+                <button class="btn_add">
+                    <a href="http://localhost:5000/admin/add/accomodations">Add</a>
                 </button>
                 <br>
                 <h1>Accomodations</h1>
@@ -79,8 +85,9 @@
                     <span class="t_cl">Destination Id</span>
                     <span class="t_cl">Description</span>
                     <span class="t_cl">Price Per Night</span>
+                    <span class="t_cl btns">
                 </div>
-                
+
                 {{#accomodations.output}}
                 <div class="table_row">
                     <span class="t_cl">{{ Id }}</span>
@@ -88,6 +95,11 @@
                     <span class="t_cl">{{ DestinationId }}</span>
                     <span class="t_cl">{{ Description }}</span>
                     <span class="t_cl">{{ PricePerNight }}</span>
+                    <span class="t_cl btns">
+                        <a href="http://" target="_blank" rel="noopener noreferrer">
+                            <i class="fa fa-trash"></i>
+                        </a>
+                    </span>
                 </div>
                 {{/accomodations.output}}
 
@@ -98,8 +110,8 @@
         <div class="for_safe">
 
             <div class="btn_for_table">
-                <button class="btn_add"> 
-                    <a href="http://localhost:5000/admin/add/activities">Add</a>  
+                <button class="btn_add">
+                    <a href="http://localhost:5000/admin/add/activities">Add</a>
                 </button>
                 <br>
                 <h1>Activities</h1>
@@ -111,14 +123,20 @@
                     <span class="t_cl">Name</span>
                     <span class="t_cl">Destination Id</span>
                     <span class="t_cl">Description</span>
+                    <span class="t_cl btns">
                 </div>
-                
+
                 {{#activities.output}}
                 <div class="table_row">
                     <span class="t_cl">{{ Id }}</span>
                     <span class="t_cl">{{ Name }}</span>
                     <span class="t_cl">{{ DestinationId }}</span>
                     <span class="t_cl">{{ Description }}</span>
+                    <span class="t_cl btns">
+                        <a href="http://" target="_blank" rel="noopener noreferrer">
+                            <i class="fa fa-trash"></i>
+                        </a>
+                    </span>
                 </div>
                 {{/activities.output}}
 
@@ -129,8 +147,8 @@
         <div class="for_safe">
 
             <div class="btn_for_table">
-                <button class="btn_add"> 
-                    <a href="http://localhost:5000/admin/add/packages">Add</a>  
+                <button class="btn_add">
+                    <a href="http://localhost:5000/admin/add/packages">Add</a>
                 </button>
                 <br>
                 <h1>Packages</h1>
@@ -145,8 +163,9 @@
                     <span class="t_clp">Destination Id</span>
                     <span class="t_clp">Activity Id</span>
                     <span class="t_clp">Accommodation Id</span>
+                    <span class="t_cl btns">
                 </div>
-                
+
                 {{#packages.output}}
                 <div class="table_row table_row-p">
                     <span class="t_clp">{{ Id }}</span>
@@ -156,11 +175,16 @@
                     <span class="t_clp">{{ DestinationId }}</span>
                     <span class="t_clp">{{ ActivityId }}</span>
                     <span class="t_clp">{{ AccommodationId }}</span>
+                    <span class="t_cl btns">
+                        <a href="http://" target="_blank" rel="noopener noreferrer">
+                            <i class="fa fa-trash"></i>
+                        </a>
+                    </span>
                 </div>
                 {{/packages.output}}
 
             </section>
-            
+
             <section class="all_table">
                 <div class="table_header table_header-p">
                     <span class="t_clp">Id</span>
@@ -171,7 +195,7 @@
                     <span class="t_clp">Status</span>
                     <span class="t_clp">Description</span>
                 </div>
-                
+
                 {{#packages.output}}
                 <div class="table_row table_row-p">
                     <span class="t_clp">{{ Id }}</span>
@@ -185,6 +209,45 @@
                 {{/packages.output}}
 
             </section>
+        </div>
+
+        <!-- Algorithm -->
+        <div class="for_safe">
+
+            <div class="btn_for_table">
+                <button class="btn_add">
+                    <a href="http://localhost:5000/admin/add/algorithm">Add</a>
+                </button>
+                <br>
+                <h1>Algorithm</h1>
+            </div>
+
+            <div class="all_table">
+                <div class="table_header">
+                    <span class="t_cl">Id</span>
+                    <span class="t_cl">Package Id</span>
+                    <span class="t_cl">Category</span>
+                    <span class="t_cl">Sub-Category</span>
+                    <span class="t_cl">Season</span>
+                    <span class="t_cl btns">
+                </div>
+
+                {{#algorithm.output}}
+                <div class="table_row">
+                    <span class="t_cl">{{ Id }}</span>
+                    <span class="t_cl">{{ PackageId }}</span>
+                    <span class="t_cl">{{ Category }}</span>
+                    <span class="t_cl">{{ SubCategory }}</span>
+                    <span class="t_cl">{{ Season }}</span>
+                    <span class="t_cl btns">
+                        <a href="http://" target="_blank" rel="noopener noreferrer">
+                            <i class="fa fa-trash"></i>
+                        </a>
+                    </span>
+                </div>
+                {{/algorithm.output}}
+
+            </div>
         </div>
     </div>
 

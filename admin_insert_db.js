@@ -22,10 +22,9 @@ const destinations = (name, country, region, description, imageBuffer) =>
                 reject({'returncode': 1, 'message': err, 'output': []});
                 return;
             }
-            const base64Image = imageBuffer.toString('base64');
             const query = 'INSERT INTO destinations (Name, Country, Region, Description, Image) VALUES (?, ?, ?, ?, ?)';
             
-            connection.query(query, [name, country, region, description, base64Image], (queryError, results) => 
+            connection.query(query, [name, country, region, description, imageBuffer], (queryError, results) => 
             {
                 connection.release();
 

@@ -14,8 +14,9 @@ const upload = multer({ storage: storage });
 //<---- Backend Modules ---->
 const authentication = require('./authentication');
 const admin_fetch_db = require('./admin_fetch_db');
-const fetch_db = require('./fetch_db');
+const delete_db = require('./admin_delete_db');
 const insert_db = require('./admin_insert_db');
+const fetch_db = require('./fetch_db');
 const bookings = require('./bookings');
 const algorithm = require('./algorithm');
 
@@ -64,6 +65,10 @@ app.get("/female", async function (request, response)
 
     // Extract the data from the response
     const female = females.data;
+    female.output.forEach(element => {
+      element.Image = Buffer.from(element.Image).toString('base64');
+    });
+
 
     // Render the template with the data
     response.render('ui_female', { data: female});
@@ -84,7 +89,9 @@ app.get("/groups", async function (request, response)
 
     // Extract the data from the response
     const group = groups.data;
-
+    group.output.forEach(element => {
+      element.Image = Buffer.from(element.Image).toString('base64');
+    });
     // Render the template with the data
     response.render('ui_group', { data: group});
   } 
@@ -104,7 +111,9 @@ app.get("/solo", async function (request, response)
 
     // Extract the data from the response
     const solo_data = solo.data;
-
+    solo_data.output.forEach(element => {
+      element.Image = Buffer.from(element.Image).toString('base64');
+    });
     // Render the template with the data
     response.render('ui_group', { data: solo_data});
   } 
@@ -953,6 +962,37 @@ app.post("/api/v1/admin/insert/algorithm" ,async function(request, response)
   }
 });
 
+// Deletion APIs for admin
+app.get("/api/v1/delete/destinations", async function(request, response)
+{
+  try 
+  {
+    const serial = request.query.SerialNo; 
+    const deleted_result = await delete_db.destinations(serial);
+
+    // Check the return code to determine success or failure
+    if (deleted_result.returncode === 0)
+    {
+      response.status(200).send({'returncode': 0, 'message': deleted_result.message, 'output': deleted_result.output});
+    }
+    else 
+    {
+      response.status(503).send({'returncode': 1, 'message': deleted_result.message, 'output': deleted_result.output});
+    }
+  } 
+  catch (error)
+  {
+    // Handle different types of errors (client-side vs server-side)
+    if (error.returncode)
+    {
+      response.status(400).send({'returncode': 1, 'message': error.message, 'output': error.output});
+    }
+    else 
+    {
+      response.status(500).send({'returncode': 1, 'message': error, 'output': []});
+    }
+  }
+});
 
 // -----------------
 

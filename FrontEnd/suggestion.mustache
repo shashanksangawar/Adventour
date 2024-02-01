@@ -33,7 +33,7 @@
               <div class="trip__grid">
                 {{#places}}
                 <div class="trip__card">
-                  <img src="{{ img_src }}" alt="trip" />
+                  <img src="{{ data:image/*;base64,{{Image}} }}" alt="trip" />
                   <div class="trip__details">
                     <p>{{place}}</p>
                     <div class="rating"><i class="ri-star-fill"></i> 4.2</div>

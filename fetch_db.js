@@ -162,7 +162,7 @@ const group_packages = () =>
               reject({'returncode': 1, 'message': err, 'output': []});
               return;
             }
-            const query = "SELECT * FROM packages WHERE Type = 'Group';";
+            const query = "SELECT * FROM packages p, destinations d WHERE p.Type = 'Group' AND d.Id=p.DestinationId;";
             connection.query(query, (queryError, results) => {
             connection.release();
     
@@ -202,11 +202,12 @@ const group_packages = () =>
                         // No Destinations are available
                         reject({'returncode': 1, 'message': 'No Packages found', 'output': []});
                     }
-                });} 
+                });
+            } 
             else 
             {
                 // No Destinations are available
-                reject({'returncode': 1, 'message': 'No accomodations found', 'output': []});
+                reject({'returncode': 1, 'message': 'No Packages found', 'output': []});
             }
             });
         });
@@ -224,7 +225,7 @@ const solo_packages = () =>
               reject({'returncode': 1, 'message': err, 'output': []});
               return;
             }
-            const query = "SELECT * FROM packages WHERE Type = 'Solo';";
+            const query = "SELECT * FROM packages p, destinations d WHERE p.Type = 'Solo' AND d.Id=p.DestinationId;";
             connection.query(query, (queryError, results) => {
             connection.release();
     
@@ -264,12 +265,12 @@ const solo_packages = () =>
                         // No Destinations are available
                         reject({'returncode': 1, 'message': 'No Packages found', 'output': []});
                     }
-                });    
+                });
             } 
             else 
             {
                 // No Destinations are available
-                reject({'returncode': 1, 'message': 'No accomodations found', 'output': []});
+                reject({'returncode': 1, 'message': 'No Packages found', 'output': []});
             }
             });
         });

@@ -39,11 +39,8 @@
         {{#data.output}}
         <div class="trip__grid">
           <div class="trip__card">
-              <!-- <h1>{{ Base64Image }}</h1> -->
-                <img src="data:image/jpeg;base64,{{ Image }}" alt="trip" />
-  
-            <div class="trip__details">
-              <p>{{ Name }} , {{ Country }}</p>
+                <img src="data:image/*;base64,{{Image}}" alt="{{Name}} Image" />
+                <p>{{ Name }} , {{ Country }}</p>
               <div class="rating"><i class="ri-star-fill"></i> 4.2</div>
               <div class="booking__price">
                 <div class="price"><span>From</span> {{ Price }}</div>
