@@ -43,6 +43,14 @@ app.use(
   })
 );
 
+function formatDate(date) 
+{
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  return `${day}-${month}-${year}`;
+}
+
 // -----------------
 //<---- Routes ---->
 //----Frontend----
@@ -124,10 +132,24 @@ app.get("/solo", async function (request, response)
   }
 });
 
-app.get('/bookings', (request, response) => {
-  const packageId = request.query.package_id;
-  const packageName = request.query.package_name;
-  response.render("ui_bookings", {PackageID: packageId, PackageValidity: packageName}); 
+app.get('/bookings', async function (request, response) 
+{
+  try 
+  {
+    const packageId = request.query.package_id;
+    const packageName = request.query.package_name;
+    const info = await bookings.booking_info(packageId);
+    info.output.forEach(element => {
+      element.Image = Buffer.from(element.Image).toString('base64');
+    });
+    response.render("ui_bookings", {PackageID: packageId, PackageValidity: packageName, info:info.output});   
+  } 
+  catch (error) 
+  {
+    console.error('Error Making Booking:', error);
+    response.status(500).json({ error: 'Internal Server Error' });
+  }
+  
 
 });
 
@@ -530,7 +552,22 @@ app.get("/api/v1/fetch/packages", async function(request, response)
 {
   try 
   {
-    const fetched_result = await fetch_db.packages();
+    let fetched_result = await fetch_db.packages();
+
+    fetched_result.output.forEach(item => 
+    {
+      // Convert StartDate and EndDate to Date objects
+      const startDate = new Date(item.StartDate);
+      const endDate = new Date(item.EndDate);
+    
+      // Format the date strings
+      const formattedStartDate = formatDate(startDate);
+      const formattedEndDate = formatDate(endDate);
+    
+      // Update the item with formatted date values
+      item.StartDate = formattedStartDate;
+      item.EndDate = formattedEndDate;
+    });
 
     // Check the return code to determine success or failure
     if (fetched_result.returncode === 0)
@@ -962,6 +999,8 @@ app.post("/api/v1/admin/insert/algorithm" ,async function(request, response)
   }
 });
 
+
+
 // Deletion APIs for admin
 app.get("/api/v1/delete/destinations", async function(request, response)
 {
@@ -993,6 +1032,132 @@ app.get("/api/v1/delete/destinations", async function(request, response)
     }
   }
 });
+
+app.get("/api/v1/delete/accomodations", async function(request, response)
+{
+  try 
+  {
+    const serial = request.query.SerialNo; 
+    const deleted_result = await delete_db.accomodations(serial);
+
+    // Check the return code to determine success or failure
+    if (deleted_result.returncode === 0)
+    {
+      response.status(200).send({'returncode': 0, 'message': deleted_result.message, 'output': deleted_result.output});
+    }
+    else 
+    {
+      response.status(503).send({'returncode': 1, 'message': deleted_result.message, 'output': deleted_result.output});
+    }
+  } 
+  catch (error)
+  {
+    // Handle different types of errors (client-side vs server-side)
+    if (error.returncode)
+    {
+      response.status(400).send({'returncode': 1, 'message': error.message, 'output': error.output});
+    }
+    else 
+    {
+      response.status(500).send({'returncode': 1, 'message': error, 'output': []});
+    }
+  }
+});
+
+app.get("/api/v1/delete/activities", async function(request, response)
+{
+  try 
+  {
+    const serial = request.query.SerialNo; 
+    const deleted_result = await delete_db.activities(serial);
+
+    // Check the return code to determine success or failure
+    if (deleted_result.returncode === 0)
+    {
+      response.status(200).send({'returncode': 0, 'message': deleted_result.message, 'output': deleted_result.output});
+    }
+    else 
+    {
+      response.status(503).send({'returncode': 1, 'message': deleted_result.message, 'output': deleted_result.output});
+    }
+  } 
+  catch (error)
+  {
+    // Handle different types of errors (client-side vs server-side)
+    if (error.returncode)
+    {
+      response.status(400).send({'returncode': 1, 'message': error.message, 'output': error.output});
+    }
+    else 
+    {
+      response.status(500).send({'returncode': 1, 'message': error, 'output': []});
+    }
+  }
+});
+
+app.get("/api/v1/delete/packages", async function(request, response)
+{
+  try 
+  {
+    const serial = request.query.SerialNo; 
+    const deleted_result = await delete_db.packages(serial);
+
+    // Check the return code to determine success or failure
+    if (deleted_result.returncode === 0)
+    {
+      response.status(200).send({'returncode': 0, 'message': deleted_result.message, 'output': deleted_result.output});
+    }
+    else 
+    {
+      response.status(503).send({'returncode': 1, 'message': deleted_result.message, 'output': deleted_result.output});
+    }
+  } 
+  catch (error)
+  {
+    // Handle different types of errors (client-side vs server-side)
+    if (error.returncode)
+    {
+      response.status(400).send({'returncode': 1, 'message': error.message, 'output': error.output});
+    }
+    else 
+    {
+      response.status(500).send({'returncode': 1, 'message': error, 'output': []});
+    }
+  }
+});
+
+app.get("/api/v1/delete/algorithm", async function(request, response)
+{
+  try 
+  {
+    const serial = request.query.SerialNo; 
+    const deleted_result = await delete_db.algorithm(serial);
+
+    // Check the return code to determine success or failure
+    if (deleted_result.returncode === 0)
+    {
+      response.status(200).send({'returncode': 0, 'message': deleted_result.message, 'output': deleted_result.output});
+    }
+    else 
+    {
+      response.status(503).send({'returncode': 1, 'message': deleted_result.message, 'output': deleted_result.output});
+    }
+  } 
+  catch (error)
+  {
+    // Handle different types of errors (client-side vs server-side)
+    if (error.returncode)
+    {
+      response.status(400).send({'returncode': 1, 'message': error.message, 'output': error.output});
+    }
+    else 
+    {
+      response.status(500).send({'returncode': 1, 'message': error, 'output': []});
+    }
+  }
+});
+
+
 
 // -----------------
 

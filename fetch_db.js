@@ -362,36 +362,8 @@ const algorithm = () =>
     
             if (results.length > 0) 
             {
-                const query = "SELECT Id FROM packages WHERE Type = 'Female';";
-                connection.query(query, (queryError, results1) => 
-                {
-                    connection.release();
-    
-                    if (queryError) 
-                    {
-                        reject({'returncode': 1, 'message': queryError, 'output': []});
-                        return;
-                    }
-        
-                    if (results1.length > 0) 
-                    {
-                        results.forEach((item,index) =>
-                        {
-
-                            id_value =results1[index]
-                            value = id_value.Id;
-                            item.PackageID = value;
-
-                        });
-                        // Destinations Fetched
-                        resolve({'returncode': 0, 'message': 'Fetched', 'output': results});
-                    } 
-                    else 
-                    {
-                        // No Destinations are available
-                        reject({'returncode': 1, 'message': 'No Packages found', 'output': []});
-                    }
-                });
+                resolve({'returncode': 0, 'message': 'Fetched', 'output': results});
+                
             } 
             else 
             {

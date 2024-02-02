@@ -73,6 +73,146 @@ const destinations = (serial) =>
     });
 };
 
+const accomodations = (serial) => 
+{
+    return new Promise((resolve, reject) => 
+    {
+        pool.getConnection((err, connection) => 
+        {
+            if (err) 
+            {
+                reject({'returncode': 1, 'message': err, 'output': []});
+                return;
+            }
+            const query = 'DELETE FROM packages WHERE AccommodationId = ?';
+            
+            connection.query(query, [serial], (queryError, results) => 
+            {
+                connection.release();
 
-module.exports = { destinations }
-// module.exports = { destinations, accomodations, activities, packages, algorithm }
+                if (queryError) 
+                {
+                    reject({'returncode': 1, 'message': queryError, 'output': []});
+                    return;
+                }
+
+                const query = 'DELETE FROM accomodations WHERE Id = ?';
+                connection.query(query, [serial], (queryError, results) => 
+                {
+                    connection.release();
+
+                    if (queryError) 
+                    {
+                        reject({'returncode': 1, 'message': queryError, 'output': []});
+                        return;
+                    }
+                    
+                    resolve({'returncode': 0, 'message': 'Successful', 'output': results});
+                    
+                });
+            });
+        });
+    });
+};
+
+const activities = (serial) => 
+{
+    return new Promise((resolve, reject) => 
+    {
+        pool.getConnection((err, connection) => 
+        {
+            if (err) 
+            {
+                reject({'returncode': 1, 'message': err, 'output': []});
+                return;
+            }
+            const query = 'DELETE FROM packages WHERE ActivityId = ?';
+            
+            connection.query(query, [serial], (queryError, results) => 
+            {
+                connection.release();
+
+                if (queryError) 
+                {
+                    reject({'returncode': 1, 'message': queryError, 'output': []});
+                    return;
+                }
+
+                const query = 'DELETE FROM activities WHERE Id = ?';
+                connection.query(query, [serial], (queryError, results) => 
+                {
+                    connection.release();
+
+                    if (queryError) 
+                    {
+                        reject({'returncode': 1, 'message': queryError, 'output': []});
+                        return;
+                    }
+                    
+                    resolve({'returncode': 0, 'message': 'Successful', 'output': results});
+                    
+                });
+            });
+        });
+    });
+};
+
+const packages = (serial) => 
+{
+    return new Promise((resolve, reject) => 
+    {
+        pool.getConnection((err, connection) => 
+        {
+            if (err) 
+            {
+                reject({'returncode': 1, 'message': err, 'output': []});
+                return;
+            }
+            const query = 'DELETE FROM packages WHERE Id = ?';
+            
+            connection.query(query, [serial], (queryError, results) => 
+            {
+                connection.release();
+
+                if (queryError) 
+                {
+                    reject({'returncode': 1, 'message': queryError, 'output': []});
+                    return;
+                }
+
+                resolve({'returncode': 0, 'message': 'Successful', 'output': results});
+            });
+        });
+    });
+};
+
+const algorithm = (serial) => 
+{
+    return new Promise((resolve, reject) => 
+    {
+        pool.getConnection((err, connection) => 
+        {
+            if (err) 
+            {
+                reject({'returncode': 1, 'message': err, 'output': []});
+                return;
+            }
+            const query = 'DELETE FROM algo WHERE Id = ?';
+            
+            connection.query(query, [serial], (queryError, results) => 
+            {
+                connection.release();
+
+                if (queryError) 
+                {
+                    reject({'returncode': 1, 'message': queryError, 'output': []});
+                    return;
+                }
+
+                resolve({'returncode': 0, 'message': 'Successful', 'output': results});
+            });
+        });
+    });
+};
+
+module.exports = { destinations, accomodations, activities, packages, algorithm }

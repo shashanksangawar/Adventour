@@ -61,5 +61,39 @@ const confirm_booking = (name, check_in, check_out, package_id, package_validity
     });
 };
 
+const booking_info = (packageId) =>
+{
+    return new Promise((resolve, reject) => 
+    {
+        pool.getConnection((err, connection) => 
+        {
+            if (err) 
+            {
+              reject({'returncode': 1, 'message': err, 'output': []});
+              return;
+            }
+            const query = "SELECT * FROM packages p, destinations d WHERE p.Id = ? AND d.Id=p.DestinationId;";
+            connection.query(query, [packageId], (queryError, results) => {
+            connection.release();
+    
+            if (queryError) {
+                reject({'returncode': 1, 'message': queryError, 'output': []});
+                return;
+            }
+    
+            if (results.length > 0) 
+            {
+                results.forEach((item,index) => {item.PackageID = packageId; })
+                resolve({'returncode': 0, 'message': 'Fetched', 'output': results});
+            } 
+            else 
+            {
+                // No Destinations are available
+                reject({'returncode': 1, 'message': 'No Packages found', 'output': []});
+            }
+            });
+        });
+    });
+};
 
-module.exports = { confirm_booking }
+module.exports = { confirm_booking, booking_info }

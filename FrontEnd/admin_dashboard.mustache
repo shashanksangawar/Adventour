@@ -34,7 +34,7 @@
 
             <div class="btn_for_table">
                 <button class="btn_add">
-                    <a href="http://localhost:5000/admin/add/destinations">Add</a>
+                    <a href="/admin/add/destinations">Add</a>
                 </button>
                 <br>
                 <h1>Destinations</h1>
@@ -72,7 +72,7 @@
 
             <div class="btn_for_table">
                 <button class="btn_add">
-                    <a href="http://localhost:5000/admin/add/accomodations">Add</a>
+                    <a href="/admin/add/accomodations">Add</a>
                 </button>
                 <br>
                 <h1>Accomodations</h1>
@@ -96,7 +96,7 @@
                     <span class="t_cl">{{ Description }}</span>
                     <span class="t_cl">{{ PricePerNight }}</span>
                     <span class="t_cl btns">
-                        <a href="http://" target="_blank" rel="noopener noreferrer">
+                        <a href="/api/v1/delete/accomodations/?SerialNo={{ Id }}">
                             <i class="fa fa-trash"></i>
                         </a>
                     </span>
@@ -111,7 +111,7 @@
 
             <div class="btn_for_table">
                 <button class="btn_add">
-                    <a href="http://localhost:5000/admin/add/activities">Add</a>
+                    <a href="/admin/add/activities">Add</a>
                 </button>
                 <br>
                 <h1>Activities</h1>
@@ -133,7 +133,7 @@
                     <span class="t_cl">{{ DestinationId }}</span>
                     <span class="t_cl">{{ Description }}</span>
                     <span class="t_cl btns">
-                        <a href="http://" target="_blank" rel="noopener noreferrer">
+                        <a href="/api/v1/delete/activities/?SerialNo={{ Id }}">
                             <i class="fa fa-trash"></i>
                         </a>
                     </span>
@@ -148,7 +148,7 @@
 
             <div class="btn_for_table">
                 <button class="btn_add">
-                    <a href="http://localhost:5000/admin/add/packages">Add</a>
+                    <a href="/admin/add/packages">Add</a>
                 </button>
                 <br>
                 <h1>Packages</h1>
@@ -176,7 +176,7 @@
                     <span class="t_clp">{{ ActivityId }}</span>
                     <span class="t_clp">{{ AccommodationId }}</span>
                     <span class="t_cl btns">
-                        <a href="http://" target="_blank" rel="noopener noreferrer">
+                        <a href="/api/v1/delete/packages/?SerialNo={{ Id }}">
                             <i class="fa fa-trash"></i>
                         </a>
                     </span>
@@ -216,7 +216,7 @@
 
             <div class="btn_for_table">
                 <button class="btn_add">
-                    <a href="http://localhost:5000/admin/add/algorithm">Add</a>
+                    <a href="/admin/add/algorithm">Add</a>
                 </button>
                 <br>
                 <h1>Algorithm</h1>
@@ -240,7 +240,7 @@
                     <span class="t_cl">{{ SubCategory }}</span>
                     <span class="t_cl">{{ Season }}</span>
                     <span class="t_cl btns">
-                        <a href="http://" target="_blank" rel="noopener noreferrer">
+                        <a href="/api/v1/delete/algorithm/?SerialNo={{ Id }}">
                             <i class="fa fa-trash"></i>
                         </a>
                     </span>
