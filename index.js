@@ -142,7 +142,8 @@ app.get('/bookings', async function (request, response)
     info.output.forEach(element => {
       element.Image = Buffer.from(element.Image).toString('base64');
     });
-    response.render("ui_bookings", {PackageID: packageId, PackageValidity: packageName, info:info.output});   
+    const hotel_info= await bookings.hotel_info(packageId);
+    response.render("ui_bookings", {PackageID: packageId, PackageValidity: packageName, info:info.output, hotel_detail:hotel_info});   
   } 
   catch (error) 
   {

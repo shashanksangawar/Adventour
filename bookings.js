@@ -96,4 +96,39 @@ const booking_info = (packageId) =>
     });
 };
 
-module.exports = { confirm_booking, booking_info }
+const hotel_info = (packageId) =>
+{
+    return new Promise((resolve, reject) => 
+    {
+        pool.getConnection((err, connection) => 
+        {
+            if (err) 
+            {
+              reject({'returncode': 1, 'message': err, 'output': []});
+              return;
+            }
+            const query = "SELECT a.Name FROM packages p, accomodations a WHERE p.Id = ? AND a.Id=p.AccommodationId;";
+            connection.query(query, [packageId], (queryError, results) => {
+            connection.release();
+    
+            if (queryError) {
+                reject({'returncode': 1, 'message': queryError, 'output': []});
+                return;
+            }
+    
+            if (results.length > 0) 
+            {
+                results.forEach((item,index) => {item.PackageID = packageId; })
+                resolve({'returncode': 0, 'message': 'Fetched', 'output': results});
+            } 
+            else 
+            {
+                // No Destinations are available
+                reject({'returncode': 1, 'message': 'No Packages found', 'output': []});
+            }
+            });
+        });
+    });
+};
+
+module.exports = { confirm_booking, booking_info, hotel_info }

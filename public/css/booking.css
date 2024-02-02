@@ -1,0 +1,76 @@
+
+.container_for_ques{
+  margin-top: 150px;
+  margin-bottom: 80px;
+  width: 100%;
+}
+
+.img__cnt > img{
+  width: 95%;
+  height: 60dvh;
+  padding: 20px 0px;
+}
+
+.img__cnt{
+  display: flex;
+  justify-content: center;
+  background-color: #c5c8c6;
+  border-radius: 1rem;
+}
+
+.section_for_cnt{
+  width: 65dvw;
+  margin: auto;
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.cnt{
+  padding: 1rem 3rem;
+  font-size: 30px;
+}
+
+input{
+  height: 45px;
+  width: 40%;
+  font-size: 20px;
+  border-radius: 10px;
+  border: 1px solid #000;
+  padding: 0px 15px;
+}
+
+.output_info{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2rem;
+  margin: 1.5rem 0;
+}
+
+.inner_cnt{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.inner_cnts{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.h_name{ 
+  padding: 0.2rem 0;
+}
+
+button{
+  margin: 2rem 0;
+  font-size: 20px;
+}
+
+
+
