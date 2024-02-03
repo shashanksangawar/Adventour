@@ -9,7 +9,7 @@
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="/css/adventourstyle.css" />
-    <link rel="stylesheet" href="/css/questionaries.css" />
+    <link rel="stylesheet" href="/css/suggestion.css" />
 
 </head>
 
@@ -27,39 +27,41 @@
         <!-- <button class="btn"><a href="Contact">Contact Us</button> -->
     </nav>
 
-    <div class="container_for_ques">
-        <section class="section_for_cnt">
+    <div class="container_for_cards_1">
+        <section class="section_for_cnt_1">
             <form action="/api/v1/suggest" method="post">
-                <div class="inner_cnt">
-                    {{#algorithm.output}}
-                    <div class="inner_cnts">
-                        <label for="package_id">Type of Journey:</label>
+                <div class="inner_cnt_1">
+                    <div class="inner_cnts_1">
+                        <label for="package_id">Type of Journey :-</label>
 
-                        <select  class="bund" name="category" required >
-                                <option value="{{Category}}">{{Category}}</option>
+                        <select class="bund" name="category" required>
+                            {{#algorithm.output}}
+                            <option value="{{Category}}">{{Category}}</option>
+                            {{/algorithm.output}}
                         </select>
                     </div>
 
-                    <div class="inner_cnts">
-                        <label for="">Favourite type of Place for Journey:</label>
+                    <div class="inner_cnts_1">
+                        <label for="">Favourite type of Place for Journey :-</label>
 
-                        <select  class="bund" name="sub_category" required >
-                                <option value="{{SubCategory}}">{{SubCategory}}</option>
+                        <select class="bund" name="sub_category" required>
+                            {{#algorithm.output}}
+                            <option value="{{SubCategory}}">{{SubCategory}}</option>
+                            {{/algorithm.output}}
                         </select>
                     </div>
 
-                    <div class="inner_cnts">
-                        <label for="package_id">Your Favourite Season:</label>
+                    <div class="inner_cnts_1">
+                        <label for="package_id">Your Favourite Season :-</label>
 
-                        <select  class="bund" name="season" required >
-                                <option value="{{Season}}">{{Season}}</option>
+                        <select class="bund" name="season" required>
+                            {{#algorithm.output}}
+                            <option value="{{Season}}">{{Season}}</option>
+                            {{/algorithm.output}}
                         </select>
                     </div>
-
-                    {{/algorithm.output}}
-       
                 </div>
-                <input type="submit" value="Add" class="btn">
+                <input type="submit" value="Search" class="btn_for_card">
             </form>
         </section>
     </div>

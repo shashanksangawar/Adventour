@@ -1,9 +1,12 @@
-.container_for_cards{
+.container_for_cards_1{
     width: 100%;
-    height: 90dvh;
+    height: 100dvh;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 4rem;
+    background-image: url('/images/rocks-8489732_1920.jpg');
+    background-repeat: no-repeat;
 }
 
 .trip{
@@ -16,4 +19,54 @@
 img{
     width: 500px;
     height: 250px;
+}
+
+.inner_cnts_1 > select{
+    width: 60%;
+    height: 45px;
+    font-size: 20px;
+    padding: 0px 1rem;
+}
+
+.inner_cnts_1 > label{
+    font-size: 22px;
+}
+
+.section_for_cnt_1{
+    width: 60%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+    padding: 2.5rem;
+    border-radius: 15px;
+    background-color: #fff;
+}
+
+.inner_cnt_1{
+    display: flex;
+    flex-direction: column;
+    align-items: space-between;
+    gap:2rem;
+}
+
+.inner_cnts_1{
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn_for_card{
+    background-color: var(--primary-color);
+    border: 0px;
+    border-radius: 15px;
+    color: #fff;
+    font-weight: bold;
+}
+
+input{
+    width: 120px;
+    height: 42px;
+    font-size: 20px;
+    margin: 1.5rem 0px;
 }
