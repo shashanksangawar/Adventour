@@ -11,18 +11,6 @@ const pool = mysql.createPool({
     queueLimit: 0
 });
 
-// function variable_isNull(variable)
-// {
-//   if (variable===undefined || variable==='' || variable===0 || variable===[] || variable==={})
-//   {
-//     return true
-//   }
-//   else
-//   {
-//     return false
-//   }
-// }
-
 const algorithm = (category, sub_category, season) =>
 {
     return new Promise((resolve, reject) => 
@@ -71,7 +59,6 @@ const algorithm = (category, sub_category, season) =>
       
               if (results.length > 0) 
               {
-                console.log(results);
                   // Destinations Fetched
                   resolve({'returncode': 0, 'message': 'Fetched destinations', 'output': results});
               } 

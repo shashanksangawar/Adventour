@@ -310,6 +310,9 @@ app.post("/api/v1/suggest", async function(request, response)
 
     if (loginResult.returncode === 0) 
     {
+      loginResult.output.forEach(element => {
+        element.Image = Buffer.from(element.Image).toString('base64');
+      });
       response.render('suggestion', {output: loginResult.output});
     }
     else 
