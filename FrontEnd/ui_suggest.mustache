@@ -42,12 +42,33 @@
                     </div>
 
                     <div class="inner_cnts_1">
-                        <label for="">Favourite type of Place for Journey :-</label>
+                        <label>How important are the following to you:</label>
 
-                        <select class="bund" name="sub_category" required>
-                            {{#algorithm.output}}
-                            <option value="{{SubCategory}}">{{SubCategory}}</option>
-                            {{/algorithm.output}}
+                        <select class="bund" required>
+                            <option>Saving money</option>
+                            <option>Comfort and convenience</option>
+                            <option>Experiencing luxury</option>
+                            <option>Value for money</option>
+                        </select>
+                    </div>
+
+                    <div class="inner_cnts_1">
+                        <label>What is your preferred travel budget range per day?</label>
+
+                        <select class="bund" required>
+                            <option>Economy</option>
+                            <option>Moderate</option>
+                            <option>Luxury</option>
+                        </select>
+                    </div>
+
+                    <div class="inner_cnts_1">
+                        <label>What type of dining experience do you prefer?</label>
+
+                        <select class="bund" required>
+                            <option>Fine dining</option>
+                            <option>Casual dining</option>
+                            <option>Street food</option>
                         </select>
                     </div>
 
@@ -60,6 +81,52 @@
                             {{/algorithm.output}}
                         </select>
                     </div>
+
+                    <div class="inner_cnts_1">
+                        <label>How do you prefer to travel within your destination?</label>
+
+                        <select class="bund" required>
+                            <option>Public transportation</option>
+                            <option>Rental car</option>
+                            <option>Taxi/ride-sharing services</option>
+                            <option>Walking/biking</option>
+                            
+                        </select>
+                    </div>
+
+                    <div class="inner_cnts_1">
+                        <label>How long do you plan to stay at your destination?</label>
+
+                        <select class="bund"  required>
+                            <option>Short trip (1-3 days)</option>
+                            <option>Medium trip (4-7 days)</option>
+                            <option>Long trip (8 days or more)</option>
+
+                        </select>
+                    </div>
+
+                    <div class="inner_cnts_1">
+                        <label for="">Favourite type of Place for Journey :-</label>
+
+                        <select class="bund" name="sub_category" required>
+                            {{#algorithm.output}}
+                            <option value="{{SubCategory}}">{{SubCategory}}</option>
+                            {{/algorithm.output}}
+                        </select>
+                    </div>
+
+
+
+                    <div class="inner_cnts_1">
+                        <label>Are you interested in exploring art galleries, museums, or cultural exhibitions during your trip?</label>
+
+                        <select class="bund"  required>
+                            <option>Yes, I enjoy immersing myself in art and culture</option>
+                            <option>No, I prefer other types of activities</option>
+
+                        </select>
+                    </div>
+
                 </div>
                 <input type="submit" value="Search" class="btn_for_card">
             </form>

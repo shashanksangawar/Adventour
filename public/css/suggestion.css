@@ -1,6 +1,6 @@
 .container_for_cards_1{
-    width: 100%;
-    height: 100dvh;
+    width: auto;
+    height: auto;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,8 +17,8 @@
 }
 
 img{
-    width: 500px;
-    height: 250px;
+    width: 700px;
+    height: auto;
 }
 
 .inner_cnts_1 > select{
@@ -30,6 +30,7 @@ img{
 
 .inner_cnts_1 > label{
     font-size: 22px;
+    width: 60%;
 }
 
 .section_for_cnt_1{
@@ -38,22 +39,26 @@ img{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin: auto;
-    padding: 2.5rem;
+    margin: 40px 0;
+    padding: 30px 45px;
     border-radius: 15px;
+    align-items: center;
     background-color: #fff;
 }
 
 .inner_cnt_1{
     display: flex;
     flex-direction: column;
-    align-items: space-between;
+    align-items: left;
+    justify-content: flex-start;
     gap:2rem;
 }
 
 .inner_cnts_1{
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
 }
 
 .btn_for_card{
